@@ -1,3 +1,4 @@
 pytest
 allure-pytest
 selene>=2.0.0rc2
+python-dotenv~=1.0.1

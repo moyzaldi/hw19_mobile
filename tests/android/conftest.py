@@ -1,9 +1,14 @@
-import pytest
-from appium.options.android import UiAutomator2Options
-from selene import browser
 import os
 
-from selenium import webdriver
+import pytest
+from appium.options.android import UiAutomator2Options
+from dotenv import load_dotenv
+from selene import browser
+
+
+@pytest.fixture(scope='session', autouse=True)
+def load_env():
+    load_dotenv()
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -24,8 +29,8 @@ def mobile_management():
             "sessionName": "BStack first_test",
 
             # Set your access credentials
-            "userName": "bsuser_il4Ftc",
-            "accessKey": "iGyVbs4TyBtQjpqpRxYj"
+            "userName": os.getenv("BSTACK_USER_NAME"),
+            "accessKey": os.getenv("BSTACK_ACCESS_KEY")
         }
     })
 
