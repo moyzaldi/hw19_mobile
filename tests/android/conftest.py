@@ -1,5 +1,4 @@
 import os
-
 import pytest
 from appium.options.android import UiAutomator2Options
 from dotenv import load_dotenv
