@@ -1,7 +1,8 @@
+import pytest
 from allure_commons._allure import step
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have, be
-import pytest
+
 
 @pytest.mark.usefixtures("mobile_management")
 def test_search(mobile_management):
@@ -17,3 +18,6 @@ def test_search(mobile_management):
         results = browser.all((AppiumBy.ID, 'org.wikipedia.alpha:id/page_list_item_title'))
         results.should(have.size_greater_than(0))
         results.first.should(have.text('Appium'))
+
+    with step('Open first page'):
+        results.first.click()

@@ -1,9 +1,11 @@
+import os
+import sys
+
 import pytest
 from appium.options.android import UiAutomator2Options
 from dotenv import load_dotenv
 from selene import browser
-import sys
-import os
+
 sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'utils'))
 from utils import attach
 
@@ -13,6 +15,8 @@ def load_env():
     load_dotenv()
 
 @pytest.fixture(params=[ "Samsung Galaxy S22"])
+# @pytest.fixture(params=[ "Samsung Galaxy S22", "Google Pixel 3"])
+
 def mobile_management(request):
     deviceName = request.param
     options = UiAutomator2Options().load_capabilities({
