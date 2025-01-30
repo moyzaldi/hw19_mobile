@@ -2,18 +2,9 @@ import pytest
 from appium.options.android import UiAutomator2Options
 from dotenv import load_dotenv
 from selene import browser
-import os
 import sys
 import os
-import sys
-import os
-
-root_dir = os.path.abspath(os.path.dirname(__file__))
-
-utils_dir = os.path.join(root_dir, 'utils')
-
-sys.path.append(utils_dir)
-
+sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'utils'))
 from utils import attach
 
 
