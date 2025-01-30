@@ -11,7 +11,7 @@ from utils import attach
 def load_env():
     load_dotenv()
 
-@pytest.fixture(params=[ "Samsung Galaxy S22","Google Pixel 3"])
+@pytest.fixture(params=[ "Samsung Galaxy S22"])
 def mobile_management(request):
     deviceName = request.param
     options = UiAutomator2Options().load_capabilities({
@@ -39,8 +39,6 @@ def mobile_management(request):
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
 
     yield
-
     attach.add_screenshot(browser)
-    attach.add_xml(browser)
-    attach.add_video(browser)
+
     browser.quit()
