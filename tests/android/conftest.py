@@ -3,20 +3,19 @@ import pytest
 from appium.options.android import UiAutomator2Options
 from dotenv import load_dotenv
 from selene import browser
+from utils import attach
+
 
 
 @pytest.fixture(scope='session', autouse=True)
 def load_env():
     load_dotenv()
 
-
-@pytest.fixture(scope='function', autouse=True)
-def mobile_management():
+@pytest.fixture(params=[ "Samsung Galaxy S22","Google Pixel 3"])
+def mobile_management(request):
+    deviceName = request.param
     options = UiAutomator2Options().load_capabilities({
-        # Specify device and os_version for testing
-        # "platformName": "android",
-        "platformVersion": "9.0",
-        "deviceName": "Google Pixel 3",
+        "deviceName": deviceName,
 
         # Set URL of the application under test
         "app": "bs://sample.app",
@@ -38,7 +37,12 @@ def mobile_management():
     browser.config.driver_options = options
 
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
+    session_id = browser.driver.session_id  # Получаем ID сессии
+
 
     yield
 
+    attach.add_screenshot(browser)
+    attach.add_xml(browser)
+    # attach.add_video(browser)
     browser.quit()

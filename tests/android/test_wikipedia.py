@@ -1,9 +1,13 @@
 from allure_commons._allure import step
 from appium.webdriver.common.appiumby import AppiumBy
-from selene import browser, have
+from selene import browser, have, be
+import pytest
 
+@pytest.mark.usefixtures("mobile_management")
+def test_search(mobile_management):
 
-def test_search():
+    with step('Search is exist'):
+        browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).should(be.visible)
 
     with step('Type search'):
         browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
