@@ -37,12 +37,10 @@ def mobile_management(request):
     browser.config.driver_options = options
 
     browser.config.timeout = float(os.getenv('timeout', '10.0'))
-    session_id = browser.driver.session_id  # Получаем ID сессии
-
 
     yield
 
     attach.add_screenshot(browser)
     attach.add_xml(browser)
-    # attach.add_video(browser)
+    attach.add_video(browser)
     browser.quit()
