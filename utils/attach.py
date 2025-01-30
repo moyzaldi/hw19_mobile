@@ -5,3 +5,5 @@ def add_screenshot(browser):
     allure.attach(body=png,
                   name='Screenshot',
                   attachment_type=allure.attachment_type.PNG)
+
+

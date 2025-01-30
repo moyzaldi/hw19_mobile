@@ -3,8 +3,18 @@ from appium.options.android import UiAutomator2Options
 from dotenv import load_dotenv
 from selene import browser
 import os
-from tests.utils import attach
+import sys
+import os
+import sys
+import os
 
+root_dir = os.path.abspath(os.path.dirname(__file__))
+
+utils_dir = os.path.join(root_dir, 'utils')
+
+sys.path.append(utils_dir)
+
+from utils import attach
 
 
 @pytest.fixture(scope='session', autouse=True)
